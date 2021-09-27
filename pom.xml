@@ -52,9 +52,9 @@
 
 	<scm>
 		<tag>main</tag>
-		<url>git@github.com:starxg/java-keytar.git</url>
-		<connection>scm:git:git@github.com:starxg/java-keytar.git</connection>
-		<developerConnection>scm:git:git@github.com:starxg/java-keytar.git</developerConnection>
+		<url>git@github.com:starxg/badge4j.git</url>
+		<connection>scm:git:git@github.com:starxg/badge4j.git</connection>
+		<developerConnection>scm:git:git@github.com:starxg/badge4j.git</developerConnection>
 	</scm>
 
 	<distributionManagement>
