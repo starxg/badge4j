@@ -1,9 +1,8 @@
 package com.starxg.badge4j;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -18,23 +17,31 @@ public class Badge {
 
     static {
         try {
-            final String json = new String(Files.readAllBytes(Paths.get(Objects
-                    .requireNonNull(Badge.class.getResource("/widths-verdana-110.json"), "widths-verdana-110.json")
-                    .toURI())));
+
+            final InputStream is = Objects.requireNonNull(Badge.class.getResourceAsStream("/widths-verdana-110.json"),
+                    "widths-verdana-110.json");
+            final byte[] buff = new byte[1024];
+            int len;
+            final StringBuilder sb = new StringBuilder();
+            while ((len = is.read(buff)) != -1) {
+                sb.append(new String(buff, 0, len, StandardCharsets.UTF_8));
+            }
+
+            final String json = sb.toString();
             final String[] codes = json.split(",");
             List<Float> list = new ArrayList<>(codes.length);
             for (int i = 0; i < codes.length; i++) {
                 if (i == 0) {
                     list.add(Float.parseFloat(String.valueOf(codes[i].charAt(1))));
                 } else if (i + 1 == codes.length) {
-                    list.add(Float.parseFloat(String.valueOf(codes[i].charAt(0))));
+                    list.add(Float.parseFloat(codes[i].substring(0, 2)));
                 } else {
                     list.add(Float.parseFloat(codes[i]));
                 }
             }
 
             CHAR_WIDTH_TABLE = Collections.unmodifiableList(list);
-        } catch (IOException | URISyntaxException e) {
+        } catch (IOException e) {
             throw new IllegalStateException(e.getMessage(), e);
         }
 
@@ -79,6 +86,23 @@ public class Badge {
      */
     public static String create(String label, String status, String icon) {
         return create(label, status, "#595959", "#1283c3", icon);
+    }
+
+    /**
+     * create a default badge
+     *
+     * @param label
+     *            left text
+     * @param status
+     *            right text
+     * @param labelColor
+     *            right text's color. default: #595959
+     * @param statusColor
+     *            left text's color. default: #1283c3
+     * @return svg
+     */
+    public static String create(String label, String status, String labelColor, String statusColor) {
+        return create(label, status, labelColor, statusColor, null);
     }
 
     /**
@@ -183,7 +207,7 @@ public class Badge {
         return sb.toString();
     }
 
-    static String sanitize(String str) {
+    private static String sanitize(String str) {
         return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("'", "&quot;")
                 .replaceAll("'", "&apos;");
     }
