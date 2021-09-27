@@ -2,9 +2,9 @@
 `Badge4j` is a Java implementation of the badge-maker JavaScript library and is inspired by [badgen.net](https://badgen.net).
 
 ## Usage
-``java
+```java
 String svg = Badge.create("hello", "world");
-``
+```
 
 ## Colors
 ![](https://badgen.net/badge/color/blue/blue)
