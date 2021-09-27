@@ -1,12 +1,23 @@
-# Badge4J
-`Badge4j` is a Java implementation of the badge-maker JavaScript library and is inspired by [badgen.net](https://badgen.net).
+## Badge4J
+Fast handcraft svg badge generator for Java.
 
-## Usage
+- 🌀 Zero dependency
+- ⚡️ Fast
+
+### Usage
+```xml
+<dependency>
+  <groupId>com.starxg</groupId>
+  <artifactId>badge4j</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
 ```java
 String svg = Badge.create("hello", "world");
 ```
 
-## Colors
+### Colors
 ![](https://badgen.net/badge/color/blue/blue)
 ![](https://badgen.net/badge/color/cyan/cyan)
 ![](https://badgen.net/badge/color/green/green)
@@ -18,5 +29,5 @@ String svg = Badge.create("hello", "world");
 ![](https://badgen.net/badge/color/grey/grey)
 ![](https://badgen.net/badge/color/black/black)
 
-## See Also
+### See Also
 [badgen](https://github.com/badgen/badgen)
