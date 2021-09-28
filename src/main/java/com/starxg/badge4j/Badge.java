@@ -208,7 +208,7 @@ public class Badge {
     }
 
     private static String sanitize(String str) {
-        return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("'", "&quot;")
+        return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;")
                 .replaceAll("'", "&apos;");
     }
 
