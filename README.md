@@ -9,7 +9,7 @@ Fast handcraft svg badge generator for Java.
 <dependency>
   <groupId>com.starxg</groupId>
   <artifactId>badge4j</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
